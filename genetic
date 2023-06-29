@@ -1,0 +1,22 @@
+import random
+
+# Генетический алгоритм
+def genetic_algorithm():
+    population = generate_initial_population()
+    fitness_scores = calculate_fitness_scores(population)
+    best_individual = select_best_individual(population, fitness_scores)
+    while not termination_condition():
+        new_population = []
+        while len(new_population) < population_size:
+            parent1, parent2 = select_parents(population, fitness_scores)
+            child = crossover(parent1, parent2)
+            mutate(child)
+            new_population.append(child)
+        population = new_population
+        fitness_scores = calculate_fitness_scores(population)
+        best_individual = select_best_individual(population, fitness_scores)
+    return best_individual
+
+# Пример использования
+best_solution = genetic_algorithm()
+print(best_solution)
